@@ -20,8 +20,12 @@
 Repo lưu toàn bộ mã nguồn **Windows Forms C#** cho môn **Lập trình mạng căn bản – NT106**.  
 Mục tiêu: luyện tập xử lý sự kiện, kiểm tra dữ liệu nhập, thao tác control WinForms và một số thuật toán cơ bản.
 
-> 🔗 Solution chính: `Lab01/WindowForm/*.sln`
 
 ---
 
-## ✅ Tiến độ bài lab
+## ✅ Tiến độ bài lab:
+- Lab 1 (Đã hoàn thành)
+- Lab 2
+- Lab 3
+- Lab 4
+- Lab 5
