@@ -1,0 +1,18 @@
+[
+  {
+    "HoTen": "\u0110\u1EE9c Huy",
+    "MSSV": "24520653",
+    "DienThoai": "0989898797",
+    "DiemMon1": 7,
+    "DiemMon2": 8,
+    "DiemMon3": 9
+  },
+  {
+    "HoTen": "Ho\u00E0ng Gia Huy",
+    "MSSV": "24520654",
+    "DienThoai": "0958734283",
+    "DiemMon1": 10,
+    "DiemMon2": 10,
+    "DiemMon3": 10
+  }
+]

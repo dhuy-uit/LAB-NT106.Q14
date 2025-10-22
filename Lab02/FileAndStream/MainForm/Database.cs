@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Lab02
@@ -12,8 +13,8 @@ namespace Lab02
     internal class Database
     {
         private static string dbFile = "Lab02_Bai06.sqlite";
-        private static string connectionString = $"Data Source={dbFile};Version=3;";
-      
+        private static string connectionString = $"Data Source={dbFile}";
+
         public static void InitializeDatabase()
         {
             if (File.Exists(dbFile))
@@ -23,23 +24,21 @@ namespace Lab02
 
             try
             {
-                SQLiteConnection.CreateFile(dbFile);
-
-                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
                 {
                     conn.Open();
 
                     string sql = "CREATE TABLE NguoiDung (IDNCC INTEGER PRIMARY KEY AUTOINCREMENT, HoVaTen TEXT, QuyenHan TEXT)";
-                    SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+                    SqliteCommand cmd = new SqliteCommand(sql, conn);
                     cmd.ExecuteNonQuery();
 
                     sql = "CREATE TABLE MonAn (IDMA INTEGER PRIMARY KEY AUTOINCREMENT, TenMonAn TEXT, HinhAnh TEXT, IDNCC INTEGER, FOREIGN KEY(IDNCC) REFERENCES NguoiDung(IDNCC))";
-                    cmd = new SQLiteCommand(sql, conn);
+                    cmd = new SqliteCommand(sql, conn);
                     cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = "INSERT INTO NguoiDung(HoVaTen, QuyenHan) VALUES ('Nguyễn Văn A', 'Admin')";
+                    cmd.CommandText = "INSERT INTO NguoiDung(HoVaTen, QuyenHan) VALUES ('Cao Phan Đức Huy', 'Admin')";
                     cmd.ExecuteNonQuery();
-                    cmd.CommandText = "INSERT INTO NguoiDung(HoVaTen, QuyenHan) VALUES ('Trần Thị B', 'User')";
+                    cmd.CommandText = "INSERT INTO NguoiDung(HoVaTen, QuyenHan) VALUES ('Hoàng Gia Huy', 'User')";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = "INSERT INTO MonAn(TenMonAn, HinhAnh, IDNCC) VALUES ('Cơm Tấm', 'comtam.jpg', 1)";
@@ -63,14 +62,14 @@ namespace Lab02
             List<MonAn> list = new List<MonAn>();
             try
             {
-                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
                 {
                     conn.Open();
                     string sql = "SELECT m.IDMA, m.TenMonAn, m.HinhAnh, n.HoVaTen " +
                                  "FROM MonAn m " +
                                  "JOIN NguoiDung n ON m.IDNCC = n.IDNCC";
-                    SQLiteCommand cmd = new SQLiteCommand(sql, conn);
-                    SQLiteDataReader reader = cmd.ExecuteReader();
+                    SqliteCommand cmd = new SqliteCommand(sql, conn);
+                    SqliteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -96,15 +95,15 @@ namespace Lab02
             MonAn monAn = null;
             try
             {
-                using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
                 {
                     conn.Open();
                     string sql = "SELECT m.IDMA, m.TenMonAn, m.HinhAnh, n.HoVaTen " +
                                  "FROM MonAn m " +
                                  "JOIN NguoiDung n ON m.IDNCC = n.IDNCC " +
                                  "ORDER BY RANDOM() LIMIT 1";
-                    SQLiteCommand cmd = new SQLiteCommand(sql, conn);
-                    SQLiteDataReader reader = cmd.ExecuteReader();
+                    SqliteCommand cmd = new SqliteCommand(sql, conn);
+                    SqliteDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
