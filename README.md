@@ -25,7 +25,7 @@ Mục tiêu: luyện tập xử lý sự kiện, kiểm tra dữ liệu nhập, 
 
 ## ✅ Tiến độ bài lab:
 - Lab 1 (Đã hoàn thành)
-- Lab 2
+- Lab 2 (Đã hoàn thành)
 - Lab 3
 - Lab 4
 - Lab 5
